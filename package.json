@@ -1,0 +1,15 @@
+{
+  "name": "users-ui",
+  "version": "0.0.1-SNAPSHOT",
+  "scripts": {
+    "build": "npm run clean && npm run bower-install",
+    "bower-install": "bower i",
+    "clean": "rimraf ./src/main/resources/public/lib-bower"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}

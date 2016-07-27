@@ -26,6 +26,27 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-security')
     compile("org.springframework.boot:spring-boot-starter-web")
+}
+
+task npmInstall(type:Exec) {
+    commandLine 'npm', 'install'
+}
+
+task npmRunBuild(type:Exec) {
+    commandLine 'npm', 'run', 'build'
+}
+
+task npmRunClean(type:Exec) {
+    commandLine 'npm', 'run', 'clean'
+}
+
+processResources.doFirst {
+    tasks.npmInstall.execute()
+    tasks.npmRunBuild.execute()
+}
+
+clean.doLast {
+    tasks.npmInstall.execute()
+    tasks.npmRunClean.execute()
 }
