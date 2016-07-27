@@ -10,8 +10,8 @@
 
   function UsersListCtrl($scope, UsersService) {
     UsersService.list()
-        .then(function (users) {
-          $scope.users = users;
+        .then(function (response) {
+          $scope.users = response.data;
         })
         .catch(function () {
           alertify.error('Unable to load users');
