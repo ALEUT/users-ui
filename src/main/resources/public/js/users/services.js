@@ -12,7 +12,7 @@
     return {
       list: function () {
         return $http({
-          url: USERS_SERVICE_URL + '/list',
+          url: USERS_SERVICE_URL,
           method: 'GET'
         });
       },

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Home</title>
 
+    <link href="css/main.css" rel="stylesheet">
     <link href="lib-bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="lib-bower/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
     <link href="lib-bower/alertify.js/themes/alertify.core.css" rel="stylesheet">
@@ -24,6 +25,22 @@
     <script src="js/users/controllers.js"></script>
     <script src="js/users/services.js"></script>
 
-    <ng-view></ng-view>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/#/users/list">Users UI</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/#/users/list">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <ng-view></ng-view>
+    </div>
+
 </body>
 </html>
