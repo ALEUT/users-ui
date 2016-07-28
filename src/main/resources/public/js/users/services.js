@@ -22,8 +22,15 @@
           url: USERS_SERVICE_URL + '/' + userId,
           method: 'GET'
         });
+      },
+      
+      create: function (user) {
+        return $http({
+          url: USERS_SERVICE_URL,
+          method: 'POST',
+          data: user
+        });
       }
-
 
     };
   }

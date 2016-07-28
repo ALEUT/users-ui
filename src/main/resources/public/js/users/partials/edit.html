@@ -1,3 +1,46 @@
-<div>
+<debug value="user"></debug>
 
-</div>
+<h2>{{action}} user</h2>
+
+<form name="userForm" class="form-horizontal" ng-submit="userForm.$valid && save()">
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="jane.doe@mail.com" ng-model="user.email" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">First name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="firstName" placeholder="Jane" ng-model="user.firstName" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName" class="col-sm-2 control-label">Last name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="lastName" placeholder="Doe" ng-model="user.lastName" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="dateOfBirth" class="col-sm-2 control-label">Date of birth</label>
+        <div class="col-sm-10">
+            <div class="input-group">
+                <input type="text" class="form-control" id="dateOfBirth" placeholder="19.07.1990" uib-datepicker-popup="dd.MM.yyyy" ng-model="user.dateOfBirth"
+                       is-open="dateOfBirthPopup.opened" datepicker-options="dateOfBirthPopupOptions" show-button-bar="false" required />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="openDateOfBirthPopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">{{action}}</button>
+            <a role="button" class="btn btn-secondary" href="/#/users/list">Cancel</a>
+        </div>
+    </div>
+</form>

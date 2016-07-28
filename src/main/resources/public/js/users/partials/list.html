@@ -11,11 +11,11 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Email</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Date of birth</th>
-                <th></th>
+                <th class="col-md-3">Email</th>
+                <th class="col-md-3">Firstname</th>
+                <th class="col-md-3">Lastname</th>
+                <th class="col-md-2">Date of birth</th>
+                <th class="col-md-1"></th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,10 @@
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>{{user.dateOfBirth | date:'dd.MM.yyyy'}}</td>
-                <td><button type="button" class="btn btn-default btn-xs" ng-click="showUser(user.id)">View</button></td>
+                <td>
+                    <a role="button" class="glyphicon glyphicon-eye-open" ng-click="showUser(user.id)" title="View"></a>
+                    <a role="button" class="glyphicon glyphicon-edit" href="/#/users/update/{{user.id}}" title="Edit"></a>
+                </td>
             </tr>
         </tbody>
     </table>
