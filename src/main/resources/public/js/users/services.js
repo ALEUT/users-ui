@@ -38,6 +38,13 @@
           method: 'PUT',
           data: user
         });
+      },
+
+      delete: function (userId) {
+        return $http({
+          url: USERS_SERVICE_URL + '/' + userId,
+          method: 'DELETE'
+        });
       }
 
     };

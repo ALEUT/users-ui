@@ -5,6 +5,7 @@
       .module('users.ui.users')
       .controller('UsersListCtrl', UsersListCtrl)
       .controller('UsersShowCtrl', UsersShowCtrl)
+      .controller('UsersDeleteCtrl', UsersDeleteCtrl)
       .controller('UsersEditCtrl', UsersEditCtrl)
       .controller('UsersCreateCtrl', UsersCreateCtrl)
       .controller('UsersUpdateCtrl', UsersUpdateCtrl);
@@ -35,6 +36,35 @@
             alertify.error('Unable to load user');
           });
     };
+
+    $scope.deleteUser = function (userId) {
+      UsersService.get(userId)
+          .then(function (response) {
+            var modalInstance = $uibModal.open({
+              templateUrl: '/js/users/partials/deleteModal.html',
+              controller: 'UsersDeleteCtrl',
+              resolve: {
+                user: function () {
+                  return response.data;
+                }
+              }
+            });
+
+            modalInstance.result
+                .then(function (userId) {
+                  UsersService.delete(userId)
+                      .then(function () {
+                        alertify.sucess('User deleted successfully');
+                      })
+                      .catch(function () {
+                        alertify.error('Unable to delete user');
+                      });
+                });
+          })
+          .catch(function () {
+            alertify.error('Unable to delete user');
+          });
+    }
   }
 
   function UsersShowCtrl($scope, $uibModalInstance, user) {
@@ -42,6 +72,18 @@
 
     $scope.close = function () {
       $uibModalInstance.close();
+    };
+  }
+
+  function UsersDeleteCtrl($scope, $uibModalInstance, user) {
+    $scope.user = user;
+
+    $scope.ok = function () {
+      $uibModalInstance.close(user.id);
+    };
+
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
     };
   }
 
