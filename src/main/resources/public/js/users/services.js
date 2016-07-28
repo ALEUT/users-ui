@@ -11,42 +11,24 @@
 
     return {
       list: function () {
-        return $http({
-          url: USERS_SERVICE_URL,
-          method: 'GET'
-        });
+        return $http.get(USERS_SERVICE_URL);
       },
 
       get: function (userId) {
-        return $http({
-          url: USERS_SERVICE_URL + '/' + userId,
-          method: 'GET'
-        });
+        return $http.get(USERS_SERVICE_URL + '/' + userId);
       },
       
       create: function (user) {
-        return $http({
-          url: USERS_SERVICE_URL,
-          method: 'POST',
-          data: user
-        });
+        return $http.post(USERS_SERVICE_URL, user);
       },
 
       update: function (user) {
-        return $http({
-          url: USERS_SERVICE_URL,
-          method: 'PUT',
-          data: user
-        });
+        return $http.put(USERS_SERVICE_URL, user);
       },
 
       delete: function (userId) {
-        return $http({
-          url: USERS_SERVICE_URL + '/' + userId,
-          method: 'DELETE'
-        });
+        return $http.delete(USERS_SERVICE_URL + '/' + userId);
       }
-
     };
   }
 
