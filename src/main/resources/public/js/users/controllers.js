@@ -19,7 +19,7 @@
         });
 
     $scope.showUser = function (userId) {
-      UsersService.show(userId)
+      UsersService.get(userId)
           .then(function (response) {
             $uibModal.open({
               templateUrl: '/js/users/partials/showModal.html',
@@ -78,10 +78,30 @@
     }
   }
 
-  function UsersUpdateCtrl($scope, $controller, $location, UsersService) {
+  function UsersUpdateCtrl($scope, $controller, $routeParams, $location, UsersService) {
     $controller(UsersEditCtrl, {$scope: $scope});
 
     $scope.action = 'Update';
+
+    UsersService.get($routeParams.userId)
+        .then(function (response) {
+          $scope.user = response.data;
+        })
+        .catch(function () {
+          $location.path('/#/users/list');
+          alertify.error('Unable to load user');
+        });
+
+    $scope.save = function () {
+      UsersService.update($scope.user)
+          .then(function () {
+            $location.path('/#/users/list');
+            alertify.success('Updated successfully');
+          })
+          .catch(function () {
+            alertify.error('Unable to update user');
+          });
+    }
   }
 
 })(angular);

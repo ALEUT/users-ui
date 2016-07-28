@@ -17,7 +17,7 @@
         });
       },
 
-      show: function (userId) {
+      get: function (userId) {
         return $http({
           url: USERS_SERVICE_URL + '/' + userId,
           method: 'GET'
@@ -28,6 +28,14 @@
         return $http({
           url: USERS_SERVICE_URL,
           method: 'POST',
+          data: user
+        });
+      },
+
+      update: function (user) {
+        return $http({
+          url: USERS_SERVICE_URL,
+          method: 'PUT',
           data: user
         });
       }
