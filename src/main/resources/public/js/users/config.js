@@ -13,12 +13,6 @@
           controller: 'UsersListCtrl'
         })
 
-        .when('/users/show/:userId', {
-          title: 'Show user',
-          templateUrl: '/js/users/partials/show.html',
-          controller: 'UsersShowCtrl'
-        })
-
         .when('/users/create', {
           title: 'Create user',
           templateUrl: '/js/users/partials/edit.html',
