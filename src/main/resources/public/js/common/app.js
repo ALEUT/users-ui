@@ -3,7 +3,8 @@
 
   angular
       .module('common', [
-        'common.directives'
+        'common.directives',
+        'common.auth'
       ]);
 
 })(angular);
