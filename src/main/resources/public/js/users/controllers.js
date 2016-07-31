@@ -23,7 +23,7 @@
       UsersService.get(userId)
           .then(function (response) {
             $uibModal.open({
-              templateUrl: '/js/users/partials/showModal.html',
+              templateUrl: '/js/users/partials/modals/show.html',
               controller: 'UsersShowCtrl',
               resolve: {
                 user: function () {
@@ -41,7 +41,7 @@
       UsersService.get(userId)
           .then(function (response) {
             var modalInstance = $uibModal.open({
-              templateUrl: '/js/users/partials/deleteModal.html',
+              templateUrl: '/js/users/partials/modals/delete.html',
               controller: 'UsersDeleteCtrl',
               resolve: {
                 user: function () {
