@@ -11,13 +11,7 @@
       .controller('UsersUpdateCtrl', UsersUpdateCtrl);
 
   function UsersListCtrl($scope, $uibModal, UsersService) {
-    UsersService.list()
-        .then(function (response) {
-          $scope.users = response.data;
-        })
-        .catch(function () {
-          alertify.error('Unable to load users');
-        });
+    loadUsers();
 
     $scope.showUser = function (userId) {
       UsersService.get(userId)
@@ -54,7 +48,8 @@
                 .then(function (userId) {
                   UsersService.delete(userId)
                       .then(function () {
-                        alertify.sucess('User deleted successfully');
+                        loadUsers();
+                        alertify.success('User deleted successfully');
                       })
                       .catch(function () {
                         alertify.error('Unable to delete user');
@@ -63,6 +58,16 @@
           })
           .catch(function () {
             alertify.error('Unable to delete user');
+          });
+    };
+
+    function loadUsers() {
+      UsersService.list()
+          .then(function (response) {
+            $scope.users = response.data;
+          })
+          .catch(function () {
+            alertify.error('Unable to load users');
           });
     }
   }
