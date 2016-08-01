@@ -2,8 +2,9 @@ package com.epam.usersui.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,9 +12,10 @@ import java.util.Properties;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-@RestController
+@Controller
 public class MainController {
 
+    private static final String INDEX_TEMPLATE = "index";
     private static final String DEFAULT_CONFIG_FILE_NAME = "config.properties";
 
     private Properties config = new Properties();
@@ -34,8 +36,9 @@ public class MainController {
         }
     }
 
-    @RequestMapping(value = "/config", method = GET)
-    public Properties config() {
-        return config;
+    @RequestMapping(value = "/", method = GET)
+    public String index(Model model) {
+        model.addAttribute("config", config);
+        return INDEX_TEMPLATE;
     }
 }
