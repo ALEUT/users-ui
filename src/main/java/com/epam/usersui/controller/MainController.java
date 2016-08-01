@@ -5,10 +5,11 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -16,9 +17,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class MainController {
 
     private static final String INDEX_TEMPLATE = "index";
-    private static final String DEFAULT_CONFIG_FILE_NAME = "config.properties";
+    private static final String DEFAULT_CONFIG_FILE_NAME = "config.yml";
 
-    private Properties config = new Properties();
+    private Map<?, ?> config;
 
     @Autowired
     public MainController(ApplicationArguments appArgs) {
@@ -30,7 +31,7 @@ public class MainController {
         }
 
         try(FileReader configFileReader = new FileReader(configFileName)) {
-            config.load(configFileReader);
+            config = new Yaml().loadAs(configFileReader, Map.class);
         } catch (IOException e) {
             throw new RuntimeException(String.format("Unable to read config file: %s", configFileName), e);
         }

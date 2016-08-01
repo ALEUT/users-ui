@@ -5,9 +5,9 @@
       .module('users.ui.users')
       .factory('UsersService', UsersService);
 
-  function UsersService($http) {
+  function UsersService($http, UIConfigService) {
 
-    var USERS_SERVICE_URL = "http://localhost:8080/users";
+    var USERS_SERVICE_URL = UIConfigService.getConfig().service.users.url;
 
     return {
       list: function () {
