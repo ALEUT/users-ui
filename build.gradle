@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 buildscript {
     ext {
         springBootVersion = '1.3.6.RELEASE'
@@ -30,15 +32,27 @@ dependencies {
 }
 
 task npmInstall(type:Exec) {
-    commandLine 'npm', 'install'
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'npm', 'install'
+    } else {
+        commandLine 'npm', 'install'
+    }
 }
 
 task npmRunBuild(type:Exec) {
-    commandLine 'npm', 'run', 'build'
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'npm', 'run', 'build'
+    } else {
+        commandLine 'npm', 'run', 'build'
+    }
 }
 
 task npmRunClean(type:Exec) {
-    commandLine 'npm', 'run', 'clean'
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        commandLine 'cmd', '/c', 'npm', 'run', 'clean'
+    } else {
+        commandLine 'npm', 'run', 'clean'
+    }
 }
 
 processResources.doFirst {
