@@ -31,28 +31,20 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 }
 
+ext {
+    npmCommand = Os.isFamily(Os.FAMILY_WINDOWS) ? ['cmd', '/c', 'npm'] : ['npm']
+}
+
 task npmInstall(type:Exec) {
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        commandLine 'cmd', '/c', 'npm', 'install'
-    } else {
-        commandLine 'npm', 'install'
-    }
+    commandLine npmCommand + 'install'
 }
 
 task npmRunBuild(type:Exec) {
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        commandLine 'cmd', '/c', 'npm', 'run', 'build'
-    } else {
-        commandLine 'npm', 'run', 'build'
-    }
+    commandLine npmCommand + 'run' + 'build'
 }
 
 task npmRunClean(type:Exec) {
-    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        commandLine 'cmd', '/c', 'npm', 'run', 'clean'
-    } else {
-        commandLine 'npm', 'run', 'clean'
-    }
+    commandLine npmCommand + 'run' + 'clean'
 }
 
 processResources.doFirst {
