@@ -1,6 +1,7 @@
 angular.module('users.ui', [
   'ngRoute',
   'ngAnimate',
+  'ngAlertify',
   'ui.bootstrap',
   'common',
   'users.ui.users'

@@ -10,7 +10,7 @@
       .controller('UsersCreateCtrl', UsersCreateCtrl)
       .controller('UsersUpdateCtrl', UsersUpdateCtrl);
 
-  function UsersListCtrl($scope, $uibModal, UsersService) {
+  function UsersListCtrl($scope, $uibModal, alertify, UsersService) {
     loadUsers();
 
     $scope.showUser = function (userId) {
@@ -107,7 +107,7 @@
     };
   }
 
-  function UsersCreateCtrl($scope, $controller, $location, UsersService) {
+  function UsersCreateCtrl($scope, $controller, $location, alertify, UsersService) {
     $controller(UsersEditCtrl, {$scope: $scope});
 
     $scope.action = 'Create';
@@ -125,7 +125,7 @@
     }
   }
 
-  function UsersUpdateCtrl($scope, $controller, $routeParams, $location, UsersService) {
+  function UsersUpdateCtrl($scope, $controller, $routeParams, $location, alertify, UsersService) {
     $controller(UsersEditCtrl, {$scope: $scope});
 
     $scope.action = 'Update';

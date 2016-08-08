@@ -1,3 +1,6 @@
 {
-   "directory": "src/main/resources/public/lib-bower"
+   "directory": "src/main/resources/public/lib",
+   "ignoredDependencies": [
+      "jquery"
+   ]
 }

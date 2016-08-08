@@ -4,7 +4,7 @@
   "scripts": {
     "build": "npm run clean && npm run bower-install",
     "bower-install": "bower i",
-    "clean": "rimraf ./src/main/resources/public/lib-bower"
+    "clean": "rimraf ./src/main/resources/public/lib"
   },
   "devDependencies": {
     "rimraf": "^2.5.4"
